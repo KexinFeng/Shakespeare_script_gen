@@ -1,0 +1,2 @@
+model_checkpoint_path: "GRU_50_epochs_tinyshakespeare"
+all_model_checkpoint_paths: "GRU_50_epochs_tinyshakespeare"

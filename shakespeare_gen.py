@@ -87,7 +87,6 @@ def train_network(g, num_epochs, num_steps = 200, batch_size = 32, verbose = Tru
 
 
 ## Customed LSTM cell with LN.
-# tf.contrib.rnn.static_rnn or tf.nn.dynamic_rnn will use cell = LayerNormalizaedLSTMCell as a callable, ie method.
 
 # Layer normalization on the second dimention of rnn_input: [batch, num_class]
 def ln(tensor, scope = None, epsilon = 1e-5):
@@ -231,38 +230,39 @@ def build_graph(
         saver = tf.train.Saver()
     )
 ##
-"""
-Compare GRU, LSTM and LN_LSTM: 20 epochs, 80 step sequences.
-"""
-epoch = 20
-
-g = build_graph(cell_type='GRU', num_steps=80)
-t = time.time()
-losses = train_network(g, epoch, num_steps=80, save="saves/GRU_20_epochs")
-print("It took", time.time() - t, "seconds to train for 20 epochs.")
-print("The average loss on the final epoch was:", losses[-1])
-
-g = build_graph(cell_type='LSTM', num_steps=80)
-t = time.time()
-losses = train_network(g, epoch, num_steps=80, save="saves/LSTM_20_epochs")
-print("It took", time.time() - t, "seconds to train for 20 epochs.")
-print("The average loss on the final epoch was:", losses[-1])
-
-g = build_graph(cell_type='LN_LSTM', num_steps=80)
-t = time.time()
-losses = train_network(g, epoch, num_steps=80, save="saves/LN_LSTM_20_epochs")
-print("It took", time.time() - t, "seconds to train for 20 epochs.")
-print("The average loss on the final epoch was:", losses[-1])
+# """
+# Compare GRU, LSTM and LN_LSTM: 20 epochs, 80 step sequences.
+# """
+# epoch = 20
+#
+# g = build_graph(cell_type='GRU', num_steps=80)
+# t = time.time()
+# losses = train_network(g, epoch, num_steps=80, save="saves/GRU_20_epochs")
+# print("It took", time.time() - t, "seconds to train for 20 epochs.")
+# print("The average loss on the final epoch was:", losses[-1])
+#
+# g = build_graph(cell_type='LSTM', num_steps=80)
+# t = time.time()
+# losses = train_network(g, epoch, num_steps=80, save="saves/LSTM_20_epochs")
+# print("It took", time.time() - t, "seconds to train for 20 epochs.")
+# print("The average loss on the final epoch was:", losses[-1])
+#
+# g = build_graph(cell_type='LN_LSTM', num_steps=80)
+# t = time.time()
+# losses = train_network(g, epoch, num_steps=80, save="saves/LN_LSTM_20_epochs")
+# print("It took", time.time() - t, "seconds to train for 20 epochs.")
+# print("The average loss on the final epoch was:", losses[-1])
 
 ##
 
 """
 Build, train and save the graph
 """
-check_point_name = "saves/GRU_20_epochs" + '_' + file_name.split('.')[0]
+epoch = 50
+check_point_name = "saves/GRU_{0}_epochs".format(epoch) + '_' + file_name.split('.')[0]
 g = build_graph(cell_type='GRU', num_steps=80)
 t = time.time()
-losses = train_network(g, 20, num_steps=80, save=check_point_name)
+losses = train_network(g, epoch, num_steps=80, save=check_point_name)
 print("It took", time.time() - t, "seconds to train for 20 epochs.")
 print("The average loss on the final epoch was:", losses[-1])
 

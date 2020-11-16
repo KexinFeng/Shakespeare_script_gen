@@ -141,7 +141,7 @@ def generate_characters(g, checkpoint, num_chars, prompt='A', pick_top_chars=Non
     return("".join(chars))
 
 ## Generating the text
-check_point_name = "saves/GRU_20_epochs" + '_' + file_name.split('.')[0]
+check_point_name = "saves/GRU_50_epochs" + '_' + file_name.split('.')[0]
 g = build_graph(cell_type='GRU', num_steps=1, batch_size=1)
 generate_characters(g, check_point_name, 750, prompt='H', pick_top_chars=5)
 
