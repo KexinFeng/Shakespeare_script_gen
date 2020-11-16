@@ -234,25 +234,25 @@ def build_graph(
 """
 Compare GRU, LSTM and LN_LSTM: 20 epochs, 80 step sequences.
 """
-# epoch = 20
-#
-# g = build_graph(cell_type='GRU', num_steps=80)
-# t = time.time()
-# losses = train_network(g, epoch, num_steps=80, save="saves/GRU_20_epochs")
-# print("It took", time.time() - t, "seconds to train for 20 epochs.")
-# print("The average loss on the final epoch was:", losses[-1])
-#
-# g = build_graph(cell_type='LSTM', num_steps=80)
-# t = time.time()
-# losses = train_network(g, epoch, num_steps=80, save="saves/LSTM_20_epochs")
-# print("It took", time.time() - t, "seconds to train for 20 epochs.")
-# print("The average loss on the final epoch was:", losses[-1])
-#
-# g = build_graph(cell_type='LN_LSTM', num_steps=80)
-# t = time.time()
-# losses = train_network(g, epoch, num_steps=80, save="saves/LN_LSTM_20_epochs")
-# print("It took", time.time() - t, "seconds to train for 20 epochs.")
-# print("The average loss on the final epoch was:", losses[-1])
+epoch = 20
+
+g = build_graph(cell_type='GRU', num_steps=80)
+t = time.time()
+losses = train_network(g, epoch, num_steps=80, save="saves/GRU_20_epochs")
+print("It took", time.time() - t, "seconds to train for 20 epochs.")
+print("The average loss on the final epoch was:", losses[-1])
+
+g = build_graph(cell_type='LSTM', num_steps=80)
+t = time.time()
+losses = train_network(g, epoch, num_steps=80, save="saves/LSTM_20_epochs")
+print("It took", time.time() - t, "seconds to train for 20 epochs.")
+print("The average loss on the final epoch was:", losses[-1])
+
+g = build_graph(cell_type='LN_LSTM', num_steps=80)
+t = time.time()
+losses = train_network(g, epoch, num_steps=80, save="saves/LN_LSTM_20_epochs")
+print("It took", time.time() - t, "seconds to train for 20 epochs.")
+print("The average loss on the final epoch was:", losses[-1])
 
 ##
 
