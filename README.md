@@ -1,41 +1,7 @@
-## Shakespeare_script_gen
-
-# Introduction
-In supervised machine learing tasks, what is often seen is to properly fit a data set and use the trained model to predict for the label. In this project, instead of making prediction for label, we explore generating new data set that is similar to the training data set, which shapes up to be more challenging.
-
-In this project, we use gated RNN to build a character-level language model to generate character sequences. Using the corpus of a Shakespeare script text, the total number of characters is 65. In the training stage, each character is input into the model and its immediate preceding character is its label. In the prediction, the output is the probability of each of the 65 characters, then the most likely character will be taken as the prediction. So in essence this is a classification problem.
-
-The loss function to delineate the proximity between two sequences is perplexity loss function. It can be shown that perplexity is equivalent to crossentropy summated over the sequence, so in the code, we still use crossentropy as loss function. 
-
-The basic structure of gated RNN model:
-<p align="center">
-    <img src="./media/BasicRNNLabeled.png"><br/>
-    <em>Basic structure of RNN.</em>
-</p>
-
-Basic structure of gated RNN model:
-<p align="center">
-    <img src="./media/LSTM3-chain.png"><br/>
-    <em>Basic structure of LSTM.</em>
-</p>
-
-# Usage
-
-`shakespeare_gen.py` is the main function, which builds the graph and train the model. The parameters are saved in dir `./saves/`. 
-
-`read_saved_model.py` reads the saved trained parameters and generates new Shakespeare style script.
-
-The other two files `reader.py` and `utils.py` are utility functions.
-
-# Model selection
-
-We have built three models: GRU, LSTM, LN_LSTM (LSTM with layer normalization). The layer normalization is based on Ref . It is similar to batch normalization in terms of reducing the covariate, but is normalized over the feature space instead of across the batches. It is added before the non-linearity.
+# Shakespeare_script_gen
 
 
-
-
-
-# Result
+## Result
 
 We use the following parameters:
 
@@ -108,7 +74,6 @@ Our former hatred, so thrive I and mine!
 
 KING EDWARD IV:
 Dorset, embrace him; Hastings, love lord marquess.
-
 ```
 
-We can see that the similarity between the generated text and the original one is almost to the level words. But the generated text still have too many misspelled words. A comparison can be drawn with the known Karpathy's Shakespeare results (http://karpathy.github.io/2015/05/21/rnn-effectiveness/#shakespeare). There the text is much more readable. The difference is that the hidden unit size (ie state_size) he uses is 512, while mine is 100 for the sake of saving time consumption. Also he uses a much larger corpus, while mine is a tiny version of the Shakespeare script. 
+We can see that the similarity between the generated text and the original one is almost to the level words. But the generated text still have too many misspelled words. A comparison can be drawn with the known Karpathy's Shakespeare results (http://karpathy.github.io/2015/05/21/rnn-effectiveness/#shakespeare). There the text is much more readable. The difference is that the hidden unit size (ie state_size) he uses is 512, while mine is 100 for the sake of saving time consumption. Also he uses a much larger corpus, while mine is a tiny version of the Shakespeare script. So this model is expcted to have better performance with more parameters and larger data set.
