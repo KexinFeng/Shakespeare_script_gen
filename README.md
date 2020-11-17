@@ -15,7 +15,7 @@ The basic structure of gated RNN model:
 
 Basic structure of gated RNN model:
 <p align="center">
-    <img src="./media/LSTM3-chain.png"><br/>
+    <img width="460" height="300" src="./media/LSTM3-chain.png"><br/>
     <em>Basic structure of LSTM.</em>
 </p>
 
